@@ -1,0 +1,16 @@
+//
+//  UIViewController+Extensions.swift
+//  MovieManager
+//
+//  Created by JON DEMAAGD on 7/22/20.
+//  Copyright © 2020 JON DEMAAGD. All rights reserved.
+//
+
+import UIKit
+
+extension UIViewController {
+    
+    @IBAction func logoutTapped(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+    }
+}
