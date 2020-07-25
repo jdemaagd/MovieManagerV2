@@ -10,6 +10,10 @@
 
 ## [Get Movie Watchlist](https://developers.themoviedb.org/3/account/get-movie-watchlist)
 
+## [Get Favorite Movies](https://developers.themoviedb.org/3/account/get-favorite-movies)
+
+## [Search Movies](https://developers.themoviedb.org/3/search/search-movies)
+
 ## [OAuth-like Flow]
 
 - [UIApplication](https://developer.apple.com/documentation/uikit/uiapplication)

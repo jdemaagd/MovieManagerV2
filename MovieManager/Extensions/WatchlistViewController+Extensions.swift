@@ -8,6 +8,8 @@
 
 import UIKit
 
+// MARK: - TableView delegate methods
+
 extension WatchlistViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {

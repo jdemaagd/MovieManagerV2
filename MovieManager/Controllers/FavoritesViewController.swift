@@ -10,12 +10,25 @@ import UIKit
 
 class FavoritesViewController: UIViewController {
     
+    // MARK: - IBOulets
+    
     @IBOutlet weak var tableView: UITableView!
+    
+    
+    // MARK: - variables
     
     var selectedIndex = 0
     
+    
+    // MARK: - Lifecycle methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        Client.getFavorites() { movies, error in
+            MovieModel.favorites = movies
+            self.tableView.reloadData()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

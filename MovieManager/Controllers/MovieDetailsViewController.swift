@@ -10,9 +10,14 @@ import UIKit
 
 class MovieDetailsViewController: UIViewController {
     
+    // MARK: - IBOutlets
+    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var watchlistBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var favoriteBarButtonItem: UIBarButtonItem!
+    
+    
+    // MARK: - variables
     
     var movie: Movie!
     
@@ -24,6 +29,9 @@ class MovieDetailsViewController: UIViewController {
         return MovieModel.favorites.contains(movie)
     }
     
+    
+    // MARK: - Lifecycle methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,16 +39,10 @@ class MovieDetailsViewController: UIViewController {
         
         toggleBarButton(watchlistBarButtonItem, enabled: isWatchlist)
         toggleBarButton(favoriteBarButtonItem, enabled: isFavorite)
-        
     }
     
-    @IBAction func watchlistButtonTapped(_ sender: UIBarButtonItem) {
-        
-    }
     
-    @IBAction func favoriteButtonTapped(_ sender: UIBarButtonItem) {
-
-    }
+    // MARK: - private methods
     
     func toggleBarButton(_ button: UIBarButtonItem, enabled: Bool) {
         if enabled {
@@ -48,5 +50,16 @@ class MovieDetailsViewController: UIViewController {
         } else {
             button.tintColor = UIColor.gray
         }
+    }
+    
+    
+    // MARK: - IBActions
+    
+    @IBAction func watchlistButtonTapped(_ sender: UIBarButtonItem) {
+        
+    }
+    
+    @IBAction func favoriteButtonTapped(_ sender: UIBarButtonItem) {
+
     }
 }

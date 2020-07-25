@@ -10,12 +10,17 @@ import UIKit
 
 class SearchViewController: UIViewController {
     
+    // MARK: - IBOutlets
+    
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
-    var movies = [Movie]()
     
+    // MARK: - variables
+    
+    var movies = [Movie]()
     var selectedIndex = 0
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetailsSegue" {
