@@ -7,7 +7,6 @@
 //
 
 struct Movie: Codable, Equatable {
-    
     let posterPath: String?
     let adult: Bool
     let overview: String

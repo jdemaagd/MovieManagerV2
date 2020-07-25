@@ -6,6 +6,10 @@
 //  Copyright © 2020 JON DEMAAGD. All rights reserved.
 //
 
-struct PostSession {
+struct PostSession: Codable {
+    let requestToken: String
     
+    enum CodingKeys: String, CodingKey {
+        case requestToken = "request_token"
+    }
 }
