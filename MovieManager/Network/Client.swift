@@ -9,8 +9,8 @@
 import Foundation
 
 class Client {
-    //
-    static let apiKey = "place_api_key_here"
+    // place_api_key_here
+    static let apiKey = "8450022ce39056893b94462c19060489"
     
     struct Auth {
         static var accountId = 0
@@ -23,16 +23,20 @@ class Client {
         static let apiKeyParam = "?api_key=\(Client.apiKey)"
         
         case createSession
+        case getFavorites
         case getRequestToken
         case getWatchlist
         case login
         case logout
+        case search(String)
         case webAuth
         
         var stringValue: String {
             switch self {
             case .createSession:
                 return Endpoints.base + "/authentication/session/new" + Endpoints.apiKeyParam
+            case .getFavorites:
+                return Endpoints.base + "/account/\(Auth.accountId)/favorite/movies" + Endpoints.apiKeyParam + "&session_id=\(Auth.sessionId)"
             case .getRequestToken:
                 return Endpoints.base + "/authentication/token/new" + Endpoints.apiKeyParam
             case .getWatchlist:
@@ -41,6 +45,8 @@ class Client {
                 return Endpoints.base + "/authentication/token/validate_with_login" + Endpoints.apiKeyParam
             case .logout:
                 return Endpoints.base + "/authentication/session" + Endpoints.apiKeyParam
+            case .search(let query):
+                return Endpoints.base + "/search/movie" + Endpoints.apiKeyParam + "&query=\(query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")"
             case .webAuth:
                 return "https://www.themoviedb.org/authenticate/" + Auth.requestToken + "?redirect_to=moviemanager:authenticate"
             }
@@ -59,6 +65,16 @@ class Client {
                 completion(true, nil)
             } else {
                 completion(false, error)
+            }
+        }
+    }
+    
+    class func getFavorites(completion: @escaping ([Movie], Error?) -> Void) {
+        taskForGETRequest(url: Endpoints.getFavorites.url, response: MovieResults.self) { (response, error) in
+            if let response = response {
+                completion(response.results, nil)
+            } else {
+                completion([], error)
             }
         }
     }
@@ -112,20 +128,35 @@ class Client {
         task.resume()
     }
     
+    class func search(query: String, completion: @escaping ([Movie], Error?) -> Void) {
+        taskForGETRequest(url: Endpoints.search(query).url, response: MovieResults.self) { (response, error) in
+            if let response = response {
+                completion(response.results, nil)
+            } else {
+                completion([], error)
+            }
+        }
+    }
     
     class func taskForGETRequest<ResponseType: Decodable>(url: URL, response: ResponseType.Type, completion: @escaping (ResponseType?, Error?) -> Void) {
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data else {
-                completion(nil, error)
+                DispatchQueue.main.async {
+                    completion(nil, error)
+                }
                 return
             }
             
             let decoder = JSONDecoder()
             do {
                 let responseObject = try decoder.decode(ResponseType.self, from: data)
-                completion(responseObject, nil)
+                DispatchQueue.main.async {
+                    completion(responseObject, nil)
+                }
             } catch {
-                completion(nil, error)
+                DispatchQueue.main.async {
+                    completion(nil, error)
+                }
             }
         }
         task.resume()
@@ -152,7 +183,9 @@ class Client {
                     completion(responseObject, nil)
                 }
             } catch {
-                completion(nil, error)
+                DispatchQueue.main.async {
+                    completion(nil, error)
+                }
             }
         }
         task.resume()
