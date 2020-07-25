@@ -8,10 +8,15 @@
 
 import UIKit
 
+// MARK: - SearchBar delegate methods
+
 extension SearchViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
+        Client.search(query: searchText) { (movies, error) in
+            self.movies = movies
+            self.tableView.reloadData()
+        }
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
@@ -26,6 +31,9 @@ extension SearchViewController: UISearchBarDelegate {
         searchBar.endEditing(true)
     }
 }
+
+
+// MARK: - TableView delegate methods
 
 extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     

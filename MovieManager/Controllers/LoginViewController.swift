@@ -62,7 +62,9 @@ class LoginViewController: UIViewController {
             if (success) {
                 // hand-off validating request token to browser:
                 // must handle redirect url in AppDelegate/SceneDelegate
-                UIApplication.shared.open(Client.Endpoints.webAuth.url, options: [:], completionHandler: nil)
+                //UIApplication.shared.open(Client.Endpoints.webAuth.url, options: [:], completionHandler: nil)
+                
+                self.performSegue(withIdentifier: "completeLoginSegue", sender: nil)
             }
         }
     }

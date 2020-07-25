@@ -8,6 +8,9 @@
 
 import UIKit
 
+
+// MARK: - TableView delegate methods
+
 extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {

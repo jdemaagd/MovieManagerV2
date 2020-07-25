@@ -6,6 +6,6 @@
 //  Copyright © 2020 JON DEMAAGD. All rights reserved.
 //
 
-struct MarkWatchlist {
+struct MarkWatchlist: Codable {
     
 }

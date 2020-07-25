@@ -10,6 +10,8 @@ import UIKit
 
 extension UIViewController {
     
+    // MARK: - ViewControllers IBAction
+    
     @IBAction func logoutTapped(_ sender: UIBarButtonItem) {
         Client.logout {
             DispatchQueue.main.async {
