@@ -25,7 +25,7 @@
 			<string>com.jdemaagd.MovieManager</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>themoviemanager</string>
+				<string>moviemanager</string>
 			</array>
 		</dict>
 	</array>
