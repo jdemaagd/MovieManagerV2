@@ -6,6 +6,10 @@
 //  Copyright © 2020 JON DEMAAGD. All rights reserved.
 //
 
-struct LogoutRequest {
+struct LogoutRequest: Codable {
+    let sessionId: String
     
+    enum CodingKeys: String, CodingKey {
+        case sessionId = "session_id"
+    }
 }
