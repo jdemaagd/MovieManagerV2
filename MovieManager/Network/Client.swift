@@ -9,8 +9,8 @@
 import Foundation
 
 class Client {
-    // place_api_key_here
-    static let apiKey = "8450022ce39056893b94462c19060489"
+    //
+    static let apiKey = "place_api_key_here"
     
     struct Auth {
         static var accountId = 0
