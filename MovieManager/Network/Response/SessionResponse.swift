@@ -7,11 +7,11 @@
 //
 
 struct SessionResponse: Codable {
-    let session: Bool
+    let success: Bool
     let sessionId: String
     
     enum CodingKeys: String, CodingKey {
-        case session
+        case success
         case sessionId = "session_id"
     }
 }

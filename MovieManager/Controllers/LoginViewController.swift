@@ -12,7 +12,7 @@ class LoginViewController: UIViewController {
 
     // MARK: - IBOutlets
     
-    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var usernameTextField: UITextField!      // not email!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var webLoginButton: UIButton!
@@ -30,23 +30,10 @@ class LoginViewController: UIViewController {
     
     // MARK: - private methods
     
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        let components = URLComponents(url: url, resolvingAgainstBaseURL: true)
-        if components?.scheme == "themoviemanager" && components?.path == "authenticate" {
-            //let loginVC = window?.rootViewController as! LoginViewController
-            //Client.createSession(completion: loginVC.handleSessionResponse(sucess:error:))
-        }
-        return true
-    }
-    
-    func handleSessionResponse(success: Bool, error: Error?) {
-        self.performSegue(withIdentifier: "completeLoginSegue", sender: nil)
-    }
-    
     func handleLoginResponse(success: Bool, error: Error?) {
+        print(Client.Auth.requestToken)
         if (success) {
-            print(Client.Auth.requestToken)
-            Client.createSession(completion: self.handleSessionResponse(success:error:))
+            Client.createSession(completion: handleSessionResponse(success:error:))
         }
     }
     
@@ -57,18 +44,24 @@ class LoginViewController: UIViewController {
         }
     }
     
+    func handleSessionResponse(success: Bool, error: Error?) {
+        if (success) {
+            self.performSegue(withIdentifier: "completeLoginSegue", sender: nil)
+        }
+    }
+    
     
     // MARK: - IBActions
     
     @IBAction func loginTapped(_ sender: UIButton) {
-        Client.getRequestToken(completion: self.handleRequestTokenResponse(success:error:))
+        Client.getRequestToken(completion: handleRequestTokenResponse(success:error:))
     }
     
     @IBAction func loginViaWebsiteTapped() {
         Client.getRequestToken { (success, error) in
-            if success {
-                // hands-off task of validating request token to browser
-                // but must handle redirect url
+            if (success) {
+                // hand-off validating request token to browser:
+                // must handle redirect url in AppDelegate/SceneDelegate
                 UIApplication.shared.open(Client.Endpoints.webAuth.url, options: [:], completionHandler: nil)
             }
         }
