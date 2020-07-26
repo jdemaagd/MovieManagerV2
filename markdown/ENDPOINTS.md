@@ -27,8 +27,3 @@
 - [Open Url](https://developer.apple.com/documentation/uikit/uiapplication/1648685-open)
 - [Request Delegate to Open Url](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1623112-application)
 
-## ERRORS
-
-- Status Code 3:
-- statusMessage:	String	"Authentication failed: You do not have permissions to access the service."	
-
