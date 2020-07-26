@@ -84,6 +84,9 @@
                                     <action selector="loginViaWebsiteTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="bG8-U7-I9l"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="9wo-iA-NRK" userLabel="ActivityIndicator">
+                                <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -91,6 +94,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="rJx-lo-rLX" secondAttribute="trailing" constant="16" id="1Ds-KN-1pR"/>
                             <constraint firstItem="w9V-g7-Ap1" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="2yL-qE-YB2"/>
                             <constraint firstItem="otU-Jt-Yts" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="3KF-Hg-uGO"/>
+                            <constraint firstItem="9wo-iA-NRK" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="3s0-Po-TQ2"/>
                             <constraint firstItem="QCp-3c-Nrv" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="6NT-Vb-PeE"/>
                             <constraint firstItem="Mte-rh-ywj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="72Y-aG-Z1u"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="QCp-3c-Nrv" secondAttribute="trailing" constant="16" id="9Sx-FH-0o4"/>
@@ -112,6 +116,7 @@
                             <constraint firstItem="QCp-3c-Nrv" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="cOH-cC-1B4"/>
                             <constraint firstItem="rJx-lo-rLX" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="cfI-9Y-lOK"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Mte-rh-ywj" secondAttribute="trailing" constant="16" id="cvX-kc-LWD"/>
+                            <constraint firstItem="9wo-iA-NRK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="d1F-dR-Fw7"/>
                             <constraint firstItem="Zp2-wT-SUe" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="dg9-1f-a8E"/>
                             <constraint firstItem="w9V-g7-Ap1" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="eXT-bN-hEf"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fI1-HK-MC1" secondAttribute="trailing" constant="16" id="fKb-nO-m5k"/>
@@ -124,6 +129,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="9wo-iA-NRK" id="LfW-6u-1Lf"/>
                         <outlet property="loginButton" destination="3Ly-6s-f0h" id="rXd-zg-luM"/>
                         <outlet property="passwordTextField" destination="Mte-rh-ywj" id="ofO-Nh-3Qz"/>
                         <outlet property="usernameTextField" destination="fI1-HK-MC1" id="8ni-y4-Emm"/>
@@ -312,10 +318,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BPi-Aq-DVg" userLabel="ImageView">
-                                <rect key="frame" x="0.0" y="56" width="414" height="654"/>
+                                <rect key="frame" x="0.0" y="56" width="414" height="659"/>
                             </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t3V-yL-K5J">
-                                <rect key="frame" x="0.0" y="710" width="414" height="49"/>
+                                <rect key="frame" x="0.0" y="715" width="414" height="44"/>
                                 <items>
                                     <barButtonItem title="Watchlist" image="List" landscapeImage="List" id="eis-bC-UHS" userLabel="WatchlistBarButtonItem">
                                         <connections>

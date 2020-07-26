@@ -20,6 +20,7 @@ class SearchViewController: UIViewController {
     
     var movies = [Movie]()
     var selectedIndex = 0
+    var currentSearchTask: URLSessionDataTask?
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
