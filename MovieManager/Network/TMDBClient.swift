@@ -145,7 +145,7 @@ class TMDBClient {
         }
         task.resume()
     }
-    
+
     class func markFavorite(movieId: Int, favorite: Bool, completion: @escaping (Bool, Error?) -> Void) {
         let body = MarkFavorite(mediaType: "movie", mediaId: movieId, favorite: favorite)
         taskForPOSTRequest(url: Endpoints.markFavorite.url, responseType: TMDBResponse.self, body: body) { (response, error) in
