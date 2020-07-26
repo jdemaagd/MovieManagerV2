@@ -145,6 +145,28 @@ class TMDBClient {
         }
         task.resume()
     }
+
+    class func markFavorite(movieId: Int, favorite: Bool, completion: @escaping (Bool, Error?) -> Void) {
+        let body = MarkFavorite(mediaType: "movie", mediaId: movieId, favorite: favorite)
+        taskForPOSTRequest(url: Endpoints.markFavorite.url, responseType: TMDBResponse.self, body: body) { (response, error) in
+            if let response = response {
+                completion(response.statusCode == 1 || response.statusCode == 12 || response.statusCode == 13, nil)
+            } else {
+                completion(false, error)
+            }
+        }
+    }
+    
+    class func markWatchlist(movieId: Int, watchlist: Bool, completion: @escaping (Bool, Error?) -> Void) {
+        let body = MarkWatchlist(mediaType: "movie", mediaId: movieId, watchlist: watchlist)
+        taskForPOSTRequest(url: Endpoints.markWatchlist.url, responseType: TMDBResponse.self, body: body) { (response, error) in
+            if let response = response {
+                completion(response.statusCode == 1 || response.statusCode == 12 || response.statusCode == 13, nil)
+            } else {
+                completion(false, error)
+            }
+        }
+    }
     
     class func markFavorite(movieId: Int, favorite: Bool, completion: @escaping (Bool, Error?) -> Void) {
         let body = MarkFavorite(mediaType: "movie", mediaId: movieId, favorite: favorite)
