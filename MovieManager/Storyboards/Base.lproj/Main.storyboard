@@ -41,7 +41,7 @@
                                 </constraints>
                                 <color key="textColor" red="0.0039215686269999999" green="0.039215686270000001" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" textContentType="username"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Please enter password" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mte-rh-ywj" userLabel="PasswordTextField" customClass="LoginTextField" customModule="MovieManager" customModuleProvider="target">
                                 <rect key="frame" x="16" y="277.5" width="382" height="28"/>
@@ -50,7 +50,7 @@
                                 </constraints>
                                 <color key="textColor" red="0.0039215686269999999" green="0.039215686270000001" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This product uses the TMDb API but is not endorsed or certified by TMDb." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zp2-wT-SUe" userLabel="LegalLabel">
                                 <rect key="frame" x="16" y="813" width="382" height="41"/>
@@ -183,11 +183,11 @@
                                 <rect key="frame" x="0.0" y="56" width="414" height="703"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MovieTableViewCell" rowHeight="100" id="c1k-mU-EY4" userLabel="MovieTableViewCell">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="100"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MovieTableViewCell" id="c1k-mU-EY4" userLabel="MovieTableViewCell">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="c1k-mU-EY4" id="iKf-OH-ngL">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -311,20 +311,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BPi-Aq-DVg">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BPi-Aq-DVg" userLabel="ImageView">
                                 <rect key="frame" x="0.0" y="56" width="414" height="654"/>
                             </imageView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lWb-vA-kUt">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t3V-yL-K5J">
                                 <rect key="frame" x="0.0" y="710" width="414" height="49"/>
                                 <items>
-                                    <barButtonItem title="Item" image="List" id="I0e-dF-cZu" userLabel="WatchlistItem">
+                                    <barButtonItem title="Watchlist" image="List" landscapeImage="List" id="eis-bC-UHS" userLabel="WatchlistBarButtonItem">
                                         <connections>
-                                            <action selector="watchlistButtonTapped:" destination="XGc-lY-N9e" id="Nw1-We-V7h"/>
+                                            <action selector="watchlistButtonTapped:" destination="XGc-lY-N9e" id="Lsw-d3-mVt"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="Item" image="Favorite" id="Sbb-om-taQ" userLabel="FavoritesItem">
+                                    <barButtonItem title="Favorite" image="Favorite" landscapeImage="Favorite" id="5dc-RH-GVF" userLabel="FavoriteBarButtonItem">
                                         <connections>
-                                            <action selector="favoriteButtonTapped:" destination="XGc-lY-N9e" id="8bD-TC-I9O"/>
+                                            <action selector="favoriteButtonTapped:" destination="XGc-lY-N9e" id="JSQ-Mm-Fgd"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -332,21 +332,21 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="tca-LT-VaA" firstAttribute="trailing" secondItem="BPi-Aq-DVg" secondAttribute="trailing" id="058-R7-yZn"/>
-                            <constraint firstItem="BPi-Aq-DVg" firstAttribute="leading" secondItem="tca-LT-VaA" secondAttribute="leading" id="ARf-Zu-0Bc"/>
-                            <constraint firstItem="BPi-Aq-DVg" firstAttribute="top" secondItem="tca-LT-VaA" secondAttribute="top" id="YfA-aq-UhH"/>
-                            <constraint firstItem="lWb-vA-kUt" firstAttribute="top" secondItem="BPi-Aq-DVg" secondAttribute="bottom" id="bT6-M6-kRP"/>
-                            <constraint firstItem="lWb-vA-kUt" firstAttribute="trailing" secondItem="tca-LT-VaA" secondAttribute="trailing" id="g0I-lH-baI"/>
-                            <constraint firstItem="lWb-vA-kUt" firstAttribute="leading" secondItem="tca-LT-VaA" secondAttribute="leading" id="lNr-Oq-3Sy"/>
-                            <constraint firstItem="tca-LT-VaA" firstAttribute="bottom" secondItem="lWb-vA-kUt" secondAttribute="bottom" id="qk5-dN-O6z"/>
+                            <constraint firstItem="BPi-Aq-DVg" firstAttribute="trailing" secondItem="tca-LT-VaA" secondAttribute="trailing" id="3Z7-X5-ZTv"/>
+                            <constraint firstItem="BPi-Aq-DVg" firstAttribute="leading" secondItem="tca-LT-VaA" secondAttribute="leading" id="9c2-c7-pwz"/>
+                            <constraint firstItem="t3V-yL-K5J" firstAttribute="trailing" secondItem="tca-LT-VaA" secondAttribute="trailing" id="K7Y-Lg-Vp2"/>
+                            <constraint firstItem="t3V-yL-K5J" firstAttribute="top" secondItem="BPi-Aq-DVg" secondAttribute="bottom" id="SZo-C2-CM1"/>
+                            <constraint firstItem="tca-LT-VaA" firstAttribute="bottom" secondItem="t3V-yL-K5J" secondAttribute="bottom" id="SeP-a9-mC9"/>
+                            <constraint firstItem="t3V-yL-K5J" firstAttribute="leading" secondItem="tca-LT-VaA" secondAttribute="leading" id="bDP-Fy-vLq"/>
+                            <constraint firstItem="BPi-Aq-DVg" firstAttribute="top" secondItem="tca-LT-VaA" secondAttribute="top" id="xVf-Bn-IUs"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="tca-LT-VaA"/>
                     </view>
                     <navigationItem key="navigationItem" id="s6I-qq-Scy"/>
                     <connections>
-                        <outlet property="favoriteBarButtonItem" destination="Sbb-om-taQ" id="Dxf-Ru-naZ"/>
+                        <outlet property="favoriteBarButtonItem" destination="5dc-RH-GVF" id="lyV-zQ-8nR"/>
                         <outlet property="imageView" destination="BPi-Aq-DVg" id="ren-9R-m3m"/>
-                        <outlet property="watchlistBarButtonItem" destination="I0e-dF-cZu" id="9hF-4Z-Dvb"/>
+                        <outlet property="watchlistBarButtonItem" destination="eis-bC-UHS" id="RzH-uS-vGF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zGr-uY-wxd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -382,11 +382,11 @@
                                 <rect key="frame" x="0.0" y="56" width="414" height="703"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="blue" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MovieTableViewCell" rowHeight="100" id="Vbp-kN-daw" userLabel="MovieTableViewCell">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="100"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="blue" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MovieTableViewCell" id="Vbp-kN-daw" userLabel="MovieTableViewCell">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Vbp-kN-daw" id="bLw-Qc-0Fx">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -424,7 +424,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="R9i-VS-WLR"/>
+        <segue reference="5dm-QL-ZBs"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Camera" width="64" height="64"/>

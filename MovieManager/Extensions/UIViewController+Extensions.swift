@@ -13,7 +13,7 @@ extension UIViewController {
     // MARK: - ViewControllers IBAction
     
     @IBAction func logoutTapped(_ sender: UIBarButtonItem) {
-        Client.logout {
+        TMDBClient.logout {
             DispatchQueue.main.async {
                 self.dismiss(animated: true, completion: nil)
             }

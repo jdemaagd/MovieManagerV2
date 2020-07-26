@@ -31,16 +31,16 @@ class LoginViewController: UIViewController {
     // MARK: - private methods
     
     func handleLoginResponse(success: Bool, error: Error?) {
-        print(Client.Auth.requestToken)
+        print(TMDBClient.Auth.requestToken)
         if (success) {
-            Client.createSession(completion: handleSessionResponse(success:error:))
+            TMDBClient.createSession(completion: handleSessionResponse(success:error:))
         }
     }
     
     func handleRequestTokenResponse(success: Bool, error: Error?) {
         if (success) {
-            print(Client.Auth.requestToken)
-            Client.login(username: self.usernameTextField.text ?? "", password: self.passwordTextField.text ?? "", completion: self.handleLoginResponse(success:error:))
+            print(TMDBClient.Auth.requestToken)
+            TMDBClient.login(username: self.usernameTextField.text ?? "", password: self.passwordTextField.text ?? "", completion: self.handleLoginResponse(success:error:))
         }
     }
     
@@ -54,11 +54,11 @@ class LoginViewController: UIViewController {
     // MARK: - IBActions
     
     @IBAction func loginTapped(_ sender: UIButton) {
-        Client.getRequestToken(completion: handleRequestTokenResponse(success:error:))
+        TMDBClient.getRequestToken(completion: handleRequestTokenResponse(success:error:))
     }
     
     @IBAction func loginViaWebsiteTapped() {
-        Client.getRequestToken { (success, error) in
+        TMDBClient.getRequestToken { (success, error) in
             if (success) {
                 // hand-off validating request token to browser:
                 // must handle redirect url in AppDelegate/SceneDelegate

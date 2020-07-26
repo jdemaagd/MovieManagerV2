@@ -13,7 +13,7 @@ import UIKit
 extension SearchViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        Client.search(query: searchText) { (movies, error) in
+        TMDBClient.search(query: searchText) { (movies, error) in
             self.movies = movies
             self.tableView.reloadData()
         }
