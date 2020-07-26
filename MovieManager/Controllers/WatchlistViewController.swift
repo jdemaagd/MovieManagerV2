@@ -25,7 +25,7 @@ class WatchlistViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Client.getWatchlist() { movies, error in
+        TMDBClient.getWatchlist() { movies, error in
             MovieModel.watchlist = movies
             self.tableView.reloadData()
         }

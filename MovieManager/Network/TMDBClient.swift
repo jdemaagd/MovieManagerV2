@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Client {
+class TMDBClient {
     // place_api_key_here
     static let apiKey = "8450022ce39056893b94462c19060489"
     
@@ -20,7 +20,7 @@ class Client {
     
     enum Endpoints {
         static let base = "https://api.themoviedb.org/3"
-        static let apiKeyParam = "?api_key=\(Client.apiKey)"
+        static let apiKeyParam = "?api_key=\(TMDBClient.apiKey)"
         
         case createSession
         case getFavorites
@@ -28,6 +28,9 @@ class Client {
         case getWatchlist
         case login
         case logout
+        case markFavorite
+        case markWatchlist
+        case posterImage(String)
         case search(String)
         case webAuth
         
@@ -45,6 +48,12 @@ class Client {
                 return Endpoints.base + "/authentication/token/validate_with_login" + Endpoints.apiKeyParam
             case .logout:
                 return Endpoints.base + "/authentication/session" + Endpoints.apiKeyParam
+            case .markFavorite:
+                return Endpoints.base + "/account/\(Auth.accountId)/favorite" + Endpoints.apiKeyParam + "&session_id=\(Auth.sessionId)"
+            case .markWatchlist:
+                return Endpoints.base + "/account/\(Auth.accountId)/watchlist" + Endpoints.apiKeyParam + "&session_id=\(Auth.sessionId)"
+            case .posterImage(let posterPath):
+                return "https://image.tmdb.org/t/p/w500" + posterPath
             case .search(let query):
                 return Endpoints.base + "/search/movie" + Endpoints.apiKeyParam + "&query=\(query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")"
             case .webAuth:
@@ -67,6 +76,15 @@ class Client {
                 completion(false, error)
             }
         }
+    }
+    
+    class func downloadPosterImage(path: String, completion: @escaping (Data?, Error?) -> Void) {
+        let task = URLSession.shared.dataTask(with: Endpoints.posterImage(path).url) { data, response, error in
+            DispatchQueue.main.async {
+                completion(data, error)
+            }
+        }
+        task.resume()
     }
     
     class func getFavorites(completion: @escaping ([Movie], Error?) -> Void) {
@@ -126,6 +144,28 @@ class Client {
             completion()
         }
         task.resume()
+    }
+    
+    class func markFavorite(movieId: Int, favorite: Bool, completion: @escaping (Bool, Error?) -> Void) {
+        let body = MarkFavorite(mediaType: "movie", mediaId: movieId, favorite: favorite)
+        taskForPOSTRequest(url: Endpoints.markFavorite.url, responseType: TMDBResponse.self, body: body) { (response, error) in
+            if let response = response {
+                completion(response.statusCode == 1 || response.statusCode == 12 || response.statusCode == 13, nil)
+            } else {
+                completion(false, error)
+            }
+        }
+    }
+    
+    class func markWatchlist(movieId: Int, watchlist: Bool, completion: @escaping (Bool, Error?) -> Void) {
+        let body = MarkWatchlist(mediaType: "movie", mediaId: movieId, watchlist: watchlist)
+        taskForPOSTRequest(url: Endpoints.markWatchlist.url, responseType: TMDBResponse.self, body: body) { (response, error) in
+            if let response = response {
+                completion(response.statusCode == 1 || response.statusCode == 12 || response.statusCode == 13, nil)
+            } else {
+                completion(false, error)
+            }
+        }
     }
     
     class func search(query: String, completion: @escaping ([Movie], Error?) -> Void) {
